@@ -30,6 +30,11 @@
     <aside class="sidebar hide">
         <div class="switcher"><i class="fas fa-chevron-left"></i></div>
         <ul class="navbar">
+            <li class="item to-page active" data-page="user">
+                <i class="fas fa-user"></i>
+                <p class="text">Accueil</p>
+            </li>
+
             <li class="item to-page active" data-page="home">
                 <i class="fas fa-calendar-days"></i>
                 <p class="text">Accueil</p>
@@ -61,6 +66,12 @@
         <div class="pages">
             <section class="login">
                 <p class="heading">Quel est votre nom</p>
+                <input type="text" name="" id="" class="username" placeholder="Nom">
+                <button type="button" class="btn to-page" data-page="home">Continuer</button>
+            </section>
+
+            <section class="user">
+                <p class="heading">Vos informations</p>
                 <input type="text" name="" id="" class="username" placeholder="Nom">
                 <button type="button" class="btn to-page" data-page="home">Continuer</button>
             </section>
