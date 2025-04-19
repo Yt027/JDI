@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Just Do It</title>
     <!-- Initialisation du service Worker -->
-    <!-- <script>
-        if('serviceWorker' in navigator){
-            navigator.serviceWorker.register('./app/sw.js')
-            .then(() => {
-                console.log("ServiceWorker installé avec succès");                
-            })
-            .catch(error => {
-                console.log("Problème d'installation du ServiceWorker\n" + error);                
-            })
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('./assets/scripts/service.js')
+            .then(registration => {
+              console.log('Service Worker registered with success:', registration);
+            }).catch(error => {
+              console.error('Service Worker registration failed:', error);
+            });
         }
-    </script> -->
+      </script>
     <!-- Favicon -->
     <link rel="shortcut icon" href="/assets/icons/JDI-512x512.png" type="image/x-icon">
     <!-- Manifest PWA -->
