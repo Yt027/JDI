@@ -17,7 +17,7 @@ body{
     overflow-x: hidden;
     /* max-height: 100vh; */
     display: flex;
-    background-color: #F3F3F3;
+    background-color: #fafafa;
 }
 
 /* Sidebar Start */
@@ -45,6 +45,7 @@ body{
     width: 30px;
     height: 30px;
     margin: 2.5rem 0 5px;
+    font-size: 18px;
 
     display: flex;
     align-items: center;
@@ -68,7 +69,7 @@ body{
     width: 100%;
     user-select: none;
     cursor: pointer;
-    padding: .2rem 0;
+    padding: .3rem 0;
 
     transition: color .2s,
                 transform .15s,
@@ -109,10 +110,11 @@ body{
                 justify-content .2s .3s;
 }
 
-.sidebar .navbar .item .fas{
+.sidebar .navbar .item .bx{
     flex: 0 0 20px;
     width: 20px; height: 20px;
     text-align: center;
+    font-size: 18px;
 }
 
 .sidebar.hide .navbar .item .text{
@@ -156,10 +158,7 @@ body:has(.sidebar.hide) .app{
     margin: 0 auto;
     font-weight: 800;
     text-transform: uppercase;
-    color: #ccc;
-}
-.app .header .user-name{
-    color: #ccc;
+    color: #EFEFEF;
 }
 /* Header End */
 
@@ -204,7 +203,7 @@ body:has(.sidebar.hide) .app{
     transition: height 0s,
     flex .4s;
     /* padding: 2.5rem; */
-    border: 1px solid #d3d3d3;
+    border: 1px solid #f0f0f0;
 }
 .app .pages .history.active{
     flex: 1 0 100%;
@@ -429,11 +428,12 @@ body:has(.sidebar.hide) .app .pages .home .addTask .name{
     /* gap: .1rem; */
 }
 
-.app .pages .history .day-wrapper .card .item .fas{
+.app .pages .history .day-wrapper .card .item .bx{
     flex: 0 0 25px;
     color: rgb(156, 0, 0);
+    font-size: 18px;
 }
-.app .pages .history .day-wrapper .card .item.accomplished .fas{
+.app .pages .history .day-wrapper .card .item.accomplished .bx{
     color: rgb(0, 156, 0);
 }
 
@@ -479,7 +479,7 @@ body:has(.sidebar.hide) .app .pages .home .addTask .name{
     transform: scale(101%);
 }
 
-.app .pages .share .card .fas{
+.app .pages .share .card .bx{
     margin: auto 0;
     color: #666;
     font-size: 6rem;

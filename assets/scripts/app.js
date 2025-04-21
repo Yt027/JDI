@@ -120,13 +120,13 @@ function setupLogin() {
         const username = usernameInput.value.trim();
         if (username) {
             localStorage.setItem('JDI-Username', username);
-            document.querySelector('.header .user-name').textContent = username;
+            document.querySelector('.navbar .item .text.username').textContent = username;
             switchPage('home');
         }
     });
     const storedUsername = localStorage.getItem('JDI-Username');
     if (storedUsername) {
-        document.querySelector('.header .user-name').textContent = storedUsername;
+        document.querySelector('.navbar .text.username').textContent = storedUsername;
         document.querySelector('.login .username').value = storedUsername;
     }
 }
