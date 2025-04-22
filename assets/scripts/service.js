@@ -6,12 +6,12 @@ const staticAssets = [
   '/',
   '/index.html',
   '/assets/style/app.css',
-  '/assets/style/all.min.css',
   '/assets/scripts/app.js',
+  '/assets/libs/CSS/boxicons/css/boxicons.min.css',
+  '/assets/libs/JS/ApexChart/apexcharts.min.js',
+  '/manifest.json',
   '/assets/icons/JDI-192x192.png',
   '/assets/icons/JDI-512x512.png',
-  '/assets/libs/JS/ApexChart/apexcharts.min.js',
-  // Add other assets here
 ];
 
 // Install event: Cache the static assets

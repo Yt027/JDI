@@ -20,6 +20,24 @@ body{
     background-color: #fafafa;
 }
 
+#app-install{
+    margin-top: 2rem;
+    align-self: center;
+    padding: 10px 30px;
+    background-color: #01040c;
+    /* border: 1px solid #01040c; */
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 600;
+    border-radius: 17.5px;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+#app-install:hover{
+    background-color: hsl(240, 93%, 45%);
+    /* color: hsl(240, 93%, 45%); */
+}
+
 /* Sidebar Start */
 .sidebar{
     position: sticky;
@@ -78,7 +96,7 @@ body{
 
 .sidebar .navbar .item:hover,
 .sidebar .navbar .item.active{
-    color: #0808df;
+    color: hsl(240, 93%, 45%);
 }
 
 .sidebar .navbar .item .text{

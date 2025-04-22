@@ -4,57 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Just Do It</title>
-    <!-- Service Worker registration and PWA install logic will be handled at the end of <body> -->
+    <!-- Initialisation du service Worker -->
+    <script>
+        if('serviceWorker' in navigator){
+            navigator.serviceWorker.register('./app/sw.js')
+            .then(() => {
+                console.log("ServiceWorker installé avec succès");                
+            })
+            .catch(error => {
+                console.log("Problème d'installation du ServiceWorker\n" + error);                
+            })
+        }
+    </script>
     <!-- Favicon -->
     <link rel="shortcut icon" href="/assets/icons/JDI-512x512.png" type="image/x-icon">
     <!-- Manifest PWA -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="Manifest.json">
     <!-- FontAwesome -->
-    <!-- <link rel="stylesheet" href="./assets/libs/CSS/fontawesome/css/all.min.css"> -->
-    <!-- Box Icons -->
-    <link rel="stylesheet" href="./assets/libs/CSS/boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" href="./assets/libs/CSS/fontawesome/css/all.css">
     <!-- CSS de l'app -->
     <link rel="stylesheet" href="./assets/style/app.css">
     <script src="./assets/libs/JS/ApexChart/apexcharts.js"></script>
 
 </head>
 <body>
-    <aside class="sidebar hide">
-        <div class="switcher"><i class="bx bx-chevron-left"></i></div>
+    <div class="sidebar hide">
+        <div class="switcher"><i class="fas fa-chevron-left"></i></div>
         <ul class="navbar">
-            <li class="item to-page" data-page="login">
-                <i class="bx bx-user"></i>
-                <p class="text username">Compte</p>
-            </li>
-
             <li class="item to-page active" data-page="home">
-                <i class="bx bxs-dashboard"></i>
+                <i class="fas fa-calendar-days"></i>
                 <p class="text">Accueil</p>
             </li>
             
             <li class="item to-page" data-page="history">
-                <i class="bx bx-history"></i>
+                <i class="fas fa-history"></i>
                 <p class="text">Historique</p>
             </li>
             
             <li class="item to-page" data-page="stats">
-                <i class="bx bx-line-chart"></i>
+                <i class="fas fa-chart-line"></i>
                 <p class="text">Statistiques</p>
             </li>
             
             <li class="item to-page" data-page="share">
-                <i class="bx bx-link"></i>
+                <i class="fas fa-link"></i>
                 <p class="text">Partager</p>
             </li>            
         </ul>
-    </aside>
+    </div>
 
     <main class="app">
         <header class="header">
-            <h1 class="logo">Just do it</h1>
+            <h1 class="logo">Just fucking do it</h1>
+            <p class="user-name">Username</p>
         </header>
 
-        <div class="pages">            
+        <div class="pages">
             <section class="login">
                 <p class="heading">Quel est votre nom</p>
                 <input type="text" name="" id="" class="username" placeholder="Nom">
@@ -62,6 +67,7 @@
             </section>
 
             <section class="home active">
+                <div id="permission"></div>
                 <h2 class="heading">Objectifs du jour</h2>
 
                 <ul class="todo">
@@ -71,8 +77,6 @@
                     <input type="text" name="" id="" class="name" placeholder="Nouvel objectif">
                     <button type="button" class="btn">Ajouter</button>
                 </div>
-                
-                <button type="button" id="app-install">Installer l'application</button>
             </section>
 
             <section class="history">
@@ -89,12 +93,12 @@
 
             <section class="share">
                 <a class="card export" title="Exporter les données en json">
-                    <i class="bx bx-share"></i>
+                    <i class="fas fa-file-export"></i>
                     <p class="instruction">Exporter</p>
                 </a>
 
                 <label for="file-load" class="card import" title="Importer les données dépuis un json">
-                    <i class="bx bx-download"></i>
+                    <i class="fas fa-file-import"></i>
                     <p class="instruction">Importer</p>
                     <form action="" method="post" enctype="multipart/form-data" style="display: none;">
                         <input type="file" name="file" id="file-load">
@@ -110,21 +114,21 @@
     <template id="todo-list-task">
         <li class="item">
             <p class="name"></p>
-            <div class="btn check"><i class="bx bx-check"></i></div>
-            <div class="btn trash"><i class="bx bx-trash"></i></div>
+            <div class="btn check"><i class="fas fa-check"></i></div>
+            <div class="btn trash"><i class="fas fa-trash-alt"></i></div>
         </li>
     </template>
 
     <template id="history-card">
         <div class="card">
-            <i class="icon bx bx-calendar-check"></i>
+            <i class="icon fas fa-calendar-check"></i>
             <p class="date">21/12/2024</p>
         </div>
     </template>
 
     <template id="history-item">
         <div class="item">
-            <i class="bx bx-x"></i>
+            <i class="fas fa-x"></i>
             <p class="text">Développer JDI PWA</p>
         </div>
     </template>
@@ -133,44 +137,6 @@
     <script src="./assets/libs/JS/jquery.js"></script>
     <script src="./assets/libs/JS/d3.v7.min.js"></script>
     <script src="./assets/scripts/app.js"></script>
-    <!-- <script src="./app/app.js"></script> -->
-    <script>
-      // Service Worker registration
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./assets/scripts/service.js')
-          .then(registration => {
-            console.log('Service Worker registered with success:', registration);
-          }).catch(error => {
-            console.error('Service Worker registration failed:', error);
-          });
-      }
-
-      // PWA Install Prompt Logic
-      let deferredPrompt;
-      const installBtn = document.getElementById('app-install');
-      // Hide the button by default
-      if (installBtn) installBtn.style.display = 'none';
-
-      window.addEventListener('beforeinstallprompt', (e) => {
-        // Prevent the mini-infobar from appearing
-        e.preventDefault();
-        deferredPrompt = e;
-        // Show the install button
-        if (installBtn) installBtn.style.display = 'inline-block';
-      });
-
-      if (installBtn) {
-        installBtn.addEventListener('click', async () => {
-          if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            console.log('User response to the install prompt:', outcome);
-            // Optionally hide the install button
-            installBtn.style.display = 'none';
-            deferredPrompt = null;
-          }
-        });
-      }
-    </script>
+    <script src="./app/app.js"></script>
 </body>
 </html>
